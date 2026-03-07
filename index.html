@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suchen Huang — User Researcher & Strategic Designer</title>
-  <meta name="description" content="Design research and UX strategy portfolio — Suchen Huang" />
+  <title>Suchen Huang: User Researcher & Strategic Designer</title>
+  <meta name="description" content="Design research and UX strategy portfolio: Suchen Huang" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0F172A" />
   <link rel="apple-touch-icon" href="icon-192.png" />
@@ -111,11 +111,10 @@
     /* ─── HERO ─── */
     #hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 8rem 2.5rem 5rem;
-      gap: 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -152,11 +151,21 @@
 
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(2.75rem, 5vw, 4.5rem);
-      line-height: 1.08;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.2vw, 2rem);
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--ink-2);
+      max-width: 820px;
+      margin-bottom: 2.5rem;
     }
 
     .hero-title em {
@@ -165,9 +174,9 @@
     }
 
     .hero-desc {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
       color: var(--ink-2);
-      max-width: 440px;
+      max-width: 560px;
       line-height: 1.75;
       margin-bottom: 2.5rem;
     }
@@ -876,31 +885,12 @@
   <section id="hero">
     <div class="hero-left">
       <div class="hero-eyebrow">User Researcher &amp; Strategic Designer</div>
-      <h1 class="hero-title">
-        Research that<br/>
-        <em>moves</em> products<br/>
-        forward
-      </h1>
-      <p class="hero-desc">
-        I translate complex user needs into strategic design decisions — across fintech, healthcare, public sector, and emerging technology.
-      </p>
+      <h1 class="hero-title">Hi, I'm Suchen.</h1>
+      <p class="hero-sub">I lead research that translates complex user needs into strategic design decisions, across fintech, healthcare, public sector, and emerging technology.</p>
       <a href="#work" class="hero-cta">
         View Case Studies
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </a>
-    </div>
-    <div class="hero-right">
-      <div class="hero-domain-tags">
-        <span class="tag">Fintech</span>
-        <span class="tag">Healthcare</span>
-        <span class="tag">Public Sector</span>
-        <span class="tag">AgTech</span>
-        <span class="tag">Retail / POS</span>
-        <span class="tag">EdTech</span>
-        <span class="tag">Mixed Methods</span>
-        <span class="tag">Inclusive Design</span>
-        <span class="tag">Strategic Design</span>
-      </div>
     </div>
   </section>
 
@@ -945,13 +935,13 @@
           I'm <strong>Suchen Huang</strong>, a Senior UX Researcher and Strategic Designer with experience spanning enterprise fintech, public sector civic tech, and emerging industrial products.
         </p>
         <p>
-          My work sits at the intersection of <strong>user needs and business strategy</strong> — helping cross-functional teams build products that are not only usable but genuinely meaningful to the people they serve.
+          My work sits at the intersection of <strong>user needs and business strategy</strong>: helping cross-functional teams build products that are not only usable but genuinely meaningful to the people they serve.
         </p>
         <p>
           I bring a mixed-methods approach to every project: leveraging behavioral data, ethnographic inquiry, concept testing, and innovation workshops to surface insights that drive measurable impact.
         </p>
         <p>
-          Beyond individual projects, I care about <strong>elevating research culture</strong> within organizations — building frameworks, upskilling teams, and advocating for equity and inclusion in design.
+          Beyond individual projects, I care about <strong>elevating research culture</strong> within organizations: building frameworks, upskilling teams, and advocating for equity and inclusion in design.
         </p>
       </div>
       <div class="about-highlights fade-up">
@@ -985,7 +975,7 @@
       Open to new opportunities, collaborations, and conversations about research, design, and building better products.
     </p>
     <div class="contact-links fade-up">
-      <a href="/cdn-cgi/l/email-protection#1078757c7c7f5063657378757e7865717e773e737f7d" class="contact-link primary">Email Me</a>
+      <a href="mailto:suchen.hcd@gmail.com" class="contact-link primary">Email Me</a>
       <a href="https://www.linkedin.com/in/suchenhuang/" target="_blank" class="contact-link secondary">LinkedIn</a>
       <a href="https://www.figma.com/proto/2CiNnNZVLEQIrx9kyHWOFJ/Journey?node-id=136-882" target="_blank" class="contact-link secondary">Figma Portfolio</a>
     </div>
@@ -1014,7 +1004,7 @@
     <button class="install-dismiss" id="install-dismiss">✕</button>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // ─── PROJECT DATA ───────────────────────────────────────────
     const projects = [
       {
@@ -1039,7 +1029,7 @@
         ],
         impact: [
           'Reprioritized bottom navigation reflecting high-frequency financial actions with reduced redundancy.',
-          'Clear separation between investing and administrative features — reduced menu duplication.',
+          'Clear separation between investing and administrative features: reduced menu duplication.',
           'Established an AI expectation framework distinguishing assistive vs. advisory AI capabilities.',
           'Created a strategic foundation for unified AI support integrating GenAI, chatbot automation, and live agent escalation.',
         ],
@@ -1054,7 +1044,7 @@
         subtitle: 'Financial Institution (PNC)',
         role: 'UX Researcher',
         duration: '3 months',
-        context: 'A major financial institution sought to improve UX, performance, and lead generation for their website across B2B client segments — from small business to private banking.',
+        context: 'A major financial institution sought to improve UX, performance, and lead generation for their website across B2B client segments: from small business to private banking.',
         goal: 'Deliver a human-centric website redesign with new navigation, IA, content strategies, and segment-specific lead generation flows.',
         methods: ['IDI + Concept Testing', 'Usability Testing (Round 1 & 2)', 'UX Diagnostics', 'Persona Development', 'Journey Mapping', 'Prototype Testing'],
         collaboration: ['UX Researchers ×2', 'UX Designers ×3', 'Product Managers', 'Business Consultants', 'Client Team'],
@@ -1068,7 +1058,7 @@
         impact: [
           'Business Banking: Product-first landing pages designed as direct sales channels with revenue-based routing.',
           'Private Banking: Active outreach model where leads trigger proactive follow-up from advisors.',
-          'Content hierarchy aligned to client mental models — insights, testimonials deprioritized based on user feedback.',
+          'Content hierarchy aligned to client mental models: insights, testimonials deprioritized based on user feedback.',
           'Cross-segment: matched messaging to what each segment truly valued (relationship vs. product).',
         ],
       },
@@ -1111,7 +1101,7 @@
         role: 'UX Researcher',
         duration: 'Fellowship',
         context: 'The City of New York planned to redesign the website helping New Yorkers find employment programs. The focus was on inclusive, accessible design for a diverse population.',
-        goal: 'Improve navigation, accessibility, and content clarity — testing color palettes, dark/light modes, and IA with a diverse user group.',
+        goal: 'Improve navigation, accessibility, and content clarity: testing color palettes, dark/light modes, and IA with a diverse user group.',
         methods: ['Heuristic Analysis', 'Stakeholder Workshop', 'Usability Testing + Interviews (N=8)', 'Inclusive Research Design'],
         collaboration: ['Product Manager', 'Designer', 'Engineers', 'Content Strategist', "Mayor's Office for People with Disabilities", "Mayor's Office of Talent & Workforce Development"],
         deliverables: [
@@ -1124,7 +1114,7 @@
         impact: [
           'Designed a new color palette with colorblind considerations and both light and dark themes.',
           'Improved mobile navigation clarity and program card design.',
-          'Advocated for equity and inclusion — research shared at stakeholder events and end of fellowship.',
+          'Advocated for equity and inclusion: research shared at stakeholder events and end of fellowship.',
           'Product launched at jobsnyc.gov with accessibility standards (WCAG 2.1 Level AA).',
         ],
       },
@@ -1178,7 +1168,7 @@
           'Research scaled to other product areas (store building platform, broader user base).',
           'Upskilled the team with unmoderated usability testing training and platform selection.',
           'Led UX Meetup sessions: "Customer Journey Mapping 101" and "Unmoderated User Testing."',
-          'Stores of varying scales showed different POS maturity — findings helped prioritize unified discount and inventory features.',
+          'Stores of varying scales showed different POS maturity: findings helped prioritize unified discount and inventory features.',
         ],
       },
       {
@@ -1218,7 +1208,7 @@
         subtitle: 'Job Seeker Platform',
         role: 'UX Researcher',
         duration: 'Sprint',
-        context: 'HireBeat, an AI-powered job interview practice and resume optimization tool, faced a high landing page bounce-rate and low conversion — unclear if the product was being communicated effectively.',
+        context: 'HireBeat, an AI-powered job interview practice and resume optimization tool, faced a high landing page bounce-rate and low conversion: unclear if the product was being communicated effectively.',
         goal: 'Understand user perceptions, identify conversion barriers, and provide actionable redesign recommendations.',
         methods: ['Competitor Analysis', 'Usability Testing + Interviews (N=8)', 'Card Sorting', 'Content Analysis'],
         collaboration: ['Product Manager', 'Designers', 'Engineers', 'Content Strategist'],
@@ -1256,7 +1246,7 @@
           { label: 'Next-version Feature Priorities', highlight: false },
         ],
         impact: [
-          'MD students identified as potential power users — warranting further exploration.',
+          'MD students identified as potential power users: warranting further exploration.',
           'Recommended holding the medical vocab pricing plan until core product improved.',
           'Key priority areas: search accuracy, notification quality/quantity, reliable progress tracking.',
           'Insights directly inspired product features for the next version update.',
@@ -1267,12 +1257,12 @@
     const methods = [
       { icon: '🎤', name: 'In-depth Interviews', desc: 'Moderated 1:1 conversations to explore user needs, behaviors, and mental models.' },
       { icon: '🖱️', name: 'Usability Testing', desc: 'Task-based testing (moderated & unmoderated) to evaluate product effectiveness.' },
-      { icon: '📋', name: 'Survey Research', desc: 'Quantitative insight at scale — ranking tasks, testing icons, and measuring desirability.' },
+      { icon: '📋', name: 'Survey Research', desc: 'Quantitative insight at scale: ranking tasks, testing icons, and measuring desirability.' },
       { icon: '🗂️', name: 'Card Sorting', desc: 'Understanding how users intuitively group and label information architecture.' },
-      { icon: '📊', name: 'Adobe Analytics', desc: 'Behavioral data analysis — task entry points, completion rates, and time-on-task.' },
+      { icon: '📊', name: 'Adobe Analytics', desc: 'Behavioral data analysis: task entry points, completion rates, and time-on-task.' },
       { icon: '🔍', name: 'Heuristic Analysis', desc: 'Expert-led UX evaluation against established usability principles.' },
       { icon: '📓', name: 'Diary Studies', desc: 'Longitudinal self-reporting to capture real-world usage behaviors over time.' },
-      { icon: '🏭', name: 'Contextual Inquiry', desc: 'In-person observation in natural environments — stores, farms, clinics.' },
+      { icon: '🏭', name: 'Contextual Inquiry', desc: 'In-person observation in natural environments: stores, farms, clinics.' },
       { icon: '🧩', name: 'Innovation Workshop', desc: 'Co-creation sessions where users and teams envision future products together.' },
       { icon: '🗺️', name: 'Journey Mapping', desc: 'Visualizing end-to-end user experiences to surface key moments and pain points.' },
     ];
@@ -1292,7 +1282,7 @@
             <span class="project-duration">${p.duration}</span>
           </div>
           <h3 class="project-title">${p.title}</h3>
-          <p class="project-role">${p.role} — ${p.subtitle}</p>
+          <p class="project-role">${p.role}: ${p.subtitle}</p>
           <div class="project-methods">
             ${p.methods.slice(0, 3).map(m => `<span class="method-tag">${m}</span>`).join('')}
             ${p.methods.length > 3 ? `<span class="method-tag">+${p.methods.length - 3}</span>` : ''}
@@ -1334,7 +1324,7 @@
           <span class="modal-duration">${p.duration}</span>
         </div>
         <h2 class="modal-title">${p.title}</h2>
-        <div class="modal-role">${p.role} — ${p.subtitle}</div>
+        <div class="modal-role">${p.role}: ${p.subtitle}</div>
 
         <div class="modal-section">
           <div class="modal-section-title">Context</div>
@@ -1458,7 +1448,7 @@ self.addEventListener('fetch', e => {
         navigator.serviceWorker.register(swUrl, { scope: '/' })
           .then(() => console.log('[SW] Registered via Blob'))
           .catch(() => {
-            // Blob SW not allowed in some contexts (cross-origin preview) — silent fail, offline still works on deploy
+            // Blob SW not allowed in some contexts (cross-origin preview): silent fail, offline still works on deploy
           });
       });
     }
@@ -1481,3 +1471,13 @@ self.addEventListener('fetch', e => {
         deferredPrompt.prompt();
         await deferredPrompt.userChoice;
         deferredPrompt = null;
+      }
+    });
+
+    installDismiss.addEventListener('click', () => {
+      installBanner.classList.remove('show');
+    });
+
+  </script>
+</body>
+</html>
