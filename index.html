@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suchen Huang — User Researcher & Strategic Designer</title>
+  <meta name="description" content="Design research and UX strategy portfolio — Suchen Huang" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0F172A" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-dark: #0F172A;
+      --ink: #0F172A;
+      --ink-2: #475569;
+      --ink-3: #94A3B8;
+      --accent: #1E40AF;
+      --accent-light: #DBEAFE;
+      --accent-warm: #D97706;
+      --border: rgba(15,23,42,0.1);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Syne', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --radius: 4px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--ink-3); border-radius: 2px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(248, 247, 244, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    nav.scrolled {
+      padding: 0.875rem 2.5rem;
+      box-shadow: 0 1px 20px rgba(15,23,42,0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-2);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 2.5rem 5rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      right: -10%;
+      top: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(30,64,175,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.75rem, 5vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.0625rem;
+      color: var(--ink-2);
+      max-width: 440px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .hero-cta:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(30,64,175,0.25);
+    }
+
+    .hero-cta svg { transition: transform var(--transition); }
+    .hero-cta:hover svg { transform: translateY(2px); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .hero-stat {
+      background: var(--bg);
+      padding: 1.5rem;
+    }
+
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 0.375rem;
+    }
+
+    .hero-stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-domain-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--ink-2);
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .tag:hover {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 6rem 2.5rem; }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.875rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── WORK / PROJECTS ─── */
+    #work { background: #fff; }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.7125rem;
+      font-weight: 500;
+      padding: 0.375rem 0.875rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink-2);
+      border-radius: 100px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(15,23,42,0.1);
+      border-color: rgba(30,64,175,0.2);
+    }
+
+    .project-card-visual {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-industry {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .project-duration {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--ink-3);
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 0.625rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-role {
+      font-size: 0.8125rem;
+      color: var(--ink-2);
+      margin-bottom: 1rem;
+    }
+
+    .project-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      margin-top: auto;
+    }
+
+    .method-tag {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      font-weight: 500;
+      padding: 0.2rem 0.5rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 3px;
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.7);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg);
+      width: 100%;
+      max-width: 780px;
+      border-radius: 12px;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      margin: auto;
+    }
+
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-header {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--ink);
+      transition: var(--transition);
+    }
+
+    .modal-close:hover { background: #fff; transform: scale(1.1); }
+
+    .modal-body { padding: 2rem 2.5rem 2.5rem; }
+
+    .modal-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-industry {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .modal-duration {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-3);
+    }
+
+    .modal-title {
+      font-family: var(--serif);
+      font-size: clamp(1.625rem, 3vw, 2.25rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-role {
+      font-size: 0.875rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-section { margin-bottom: 1.75rem; }
+    .modal-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-3);
+      margin-bottom: 0.625rem;
+    }
+
+    .modal-section p {
+      font-size: 0.9375rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    .modal-deliverables {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .deliverable-chip {
+      background: var(--bg-dark);
+      color: #fff;
+      font-size: 0.7875rem;
+      font-weight: 500;
+      padding: 0.625rem 1rem;
+      border-radius: var(--radius);
+      line-height: 1.4;
+    }
+
+    .deliverable-chip.highlight {
+      background: var(--accent);
+    }
+
+    .modal-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .modal-method {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.75rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 100px;
+    }
+
+    .modal-collab {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .collab-chip {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--ink-2);
+    }
+
+    .modal-impact {
+      background: linear-gradient(135deg, #EFF6FF, #F0FDF4);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .modal-impact p {
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    .modal-impact p + p { margin-top: 0.5rem; }
+
+    /* ─── METHODS ─── */
+    #methods { background: var(--bg); }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .method-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      transition: var(--transition);
+    }
+
+    .method-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .method-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .method-name {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .method-desc {
+      font-size: 0.8125rem;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--bg-dark);
+      color: #fff;
+    }
+
+    #about .section-label { color: #60A5FA; }
+    #about .section-label::before { background: #60A5FA; }
+    #about .section-title { color: #fff; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .about-text p {
+      font-size: 1.0625rem;
+      color: #94A3B8;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p strong { color: #fff; font-weight: 600; }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .highlight-item {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .highlight-item:hover {
+      border-color: rgba(96,165,250,0.4);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .highlight-title {
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.9375rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .highlight-desc {
+      font-size: 0.8125rem;
+      color: #64748B;
+      line-height: 1.6;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--bg); text-align: center; }
+    #contact .section-title { margin-bottom: 1rem; }
+
+    .contact-sub {
+      font-size: 1.0625rem;
+      color: var(--ink-2);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      letter-spacing: 0.02em;
+    }
+
+    .contact-link.primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .contact-link.primary:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .contact-link.secondary {
+      border: 1px solid var(--border);
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .contact-link.secondary:hover {
+      border-color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      color: var(--ink-3);
+      font-family: var(--mono);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* staggered children */
+    .stagger > * { transition-delay: calc(var(--i, 0) * 80ms); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      #hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 4rem;
+        gap: 3rem;
+      }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: 0.75rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+      .hero-title { font-size: 2.375rem; }
+      .nav-links { display: none; }
+      .modal-body { padding: 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    /* ─── INSTALL BANNER ─── */
+    #install-banner {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      align-items: center;
+      gap: 1rem;
+      z-index: 150;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      white-space: nowrap;
+    }
+
+    #install-banner.show { display: flex; }
+
+    .install-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: var(--transition);
+    }
+
+    .install-btn:hover { opacity: 0.85; }
+
+    .install-dismiss {
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* project card visual backgrounds */
+    /* ─── PROJECT CARD VISUALS (Unsplash) ─── */
+    .project-card-visual {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .vis-1 { background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80'); }
+    .vis-2 { background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'); }
+    .vis-3 { background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80'); }
+    .vis-4 { background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80'); }
+    .vis-5 { background-image: url('https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80'); }
+    .vis-6 { background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80'); }
+    .vis-7 { background-image: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=800&q=80'); }
+    .vis-8 { background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'); }
+    .vis-9 { background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80'); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">Suchen Huang</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">User Researcher &amp; Strategic Designer</div>
+      <h1 class="hero-title">
+        Research that<br/>
+        <em>moves</em> products<br/>
+        forward
+      </h1>
+      <p class="hero-desc">
+        I translate complex user needs into strategic design decisions — across fintech, healthcare, public sector, and emerging technology.
+      </p>
+      <a href="#work" class="hero-cta">
+        View Case Studies
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-domain-tags">
+        <span class="tag">Fintech</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag">Public Sector</span>
+        <span class="tag">AgTech</span>
+        <span class="tag">Retail / POS</span>
+        <span class="tag">EdTech</span>
+        <span class="tag">Mixed Methods</span>
+        <span class="tag">Inclusive Design</span>
+        <span class="tag">Strategic Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-header fade-up">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Case Studies</h2>
+    </div>
+
+    <div class="filter-bar fade-up" id="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="fintech">Fintech</button>
+      <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+      <button class="filter-btn" data-filter="public">Public Sector</button>
+      <button class="filter-btn" data-filter="agtech">AgTech</button>
+      <button class="filter-btn" data-filter="retail">Retail &amp; Commerce</button>
+      <button class="filter-btn" data-filter="edtech">EdTech</button>
+    </div>
+
+    <div class="projects-grid stagger" id="projects-grid"></div>
+  </section>
+
+  <!-- METHODS -->
+  <section id="methods">
+    <div class="section-header fade-up">
+      <div class="section-label">Toolkit</div>
+      <h2 class="section-title">Research Methods</h2>
+    </div>
+    <div class="methods-grid stagger fade-up" id="methods-grid"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header fade-up">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>
+          I'm <strong>Suchen Huang</strong>, a Senior UX Researcher and Strategic Designer with experience spanning enterprise fintech, public sector civic tech, and emerging industrial products.
+        </p>
+        <p>
+          My work sits at the intersection of <strong>user needs and business strategy</strong> — helping cross-functional teams build products that are not only usable but genuinely meaningful to the people they serve.
+        </p>
+        <p>
+          I bring a mixed-methods approach to every project: leveraging behavioral data, ethnographic inquiry, concept testing, and innovation workshops to surface insights that drive measurable impact.
+        </p>
+        <p>
+          Beyond individual projects, I care about <strong>elevating research culture</strong> within organizations — building frameworks, upskilling teams, and advocating for equity and inclusion in design.
+        </p>
+      </div>
+      <div class="about-highlights fade-up">
+        <div class="highlight-item">
+          <div class="highlight-title">🏦 Enterprise Fintech</div>
+          <div class="highlight-desc">Led research at BMO InvestorLine and financial institutions, shaping navigation, IA, and GenAI strategy for self-directed investors.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-title">🏛️ Civic Technology</div>
+          <div class="highlight-desc">Designed and tested inclusive experiences at the NYC government level, advocating for accessibility across diverse communities.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-title">🌾 Emerging Technology</div>
+          <div class="highlight-desc">Led 100+ touchpoint research initiatives for next-generation electric autonomous tractor ecosystems with HCD methodologies.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-title">📈 Research Operations</div>
+          <div class="highlight-desc">Built research frameworks, upskilled teams on unmoderated testing platforms, and established UX maturity across organizations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="fade-up">
+      <div class="section-label" style="justify-content:center">Get in Touch</div>
+      <h2 class="section-title">Let's Connect</h2>
+    </div>
+    <p class="contact-sub fade-up">
+      Open to new opportunities, collaborations, and conversations about research, design, and building better products.
+    </p>
+    <div class="contact-links fade-up">
+      <a href="/cdn-cgi/l/email-protection#1078757c7c7f5063657378757e7865717e773e737f7d" class="contact-link primary">Email Me</a>
+      <a href="https://www.linkedin.com/in/suchenhuang/" target="_blank" class="contact-link secondary">LinkedIn</a>
+      <a href="https://www.figma.com/proto/2CiNnNZVLEQIrx9kyHWOFJ/Journey?node-id=136-882" target="_blank" class="contact-link secondary">Figma Portfolio</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Suchen Huang</span>
+    <span>User Researcher · Strategic Designer · NYC</span>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal" id="modal">
+      <div class="modal-header" id="modal-header">
+        <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- INSTALL BANNER -->
+  <div id="install-banner">
+    <span>📲 Add to Home Screen for offline access</span>
+    <button class="install-btn" id="install-btn">Install</button>
+    <button class="install-dismiss" id="install-dismiss">✕</button>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ─── PROJECT DATA ───────────────────────────────────────────
+    const projects = [
+      {
+        id: 1,
+        emoji: '🏦',
+        visual: 'vis-1',
+        industry: 'Fintech',
+        filter: 'fintech',
+        title: 'Navigation Redesign for BMO InvestorLine',
+        subtitle: 'Mobile App',
+        role: 'Senior UX Researcher',
+        duration: '2 months',
+        context: 'Users struggled to locate high-frequency actions in their self-directed investment platform. Prior research identified navigation complexity as one of the top 3 usability pain points across mobile app and web portal.',
+        goal: 'Redesign mobile navigation to align with investor mental models, surface high-frequency actions, reduce cognitive load, and prepare for emerging GenAI features.',
+        methods: ['Unmoderated Testing (N=45)', 'Moderated Interviews (N=9)', 'Adobe Analytics', 'Card Sorting', 'First-Click Test', 'Survey'],
+        collaboration: ['Senior UX Researcher', 'Product Designers ×2', 'Product Owners ×2', 'Research Manager', 'Content Manager', 'Data Analytics'],
+        deliverables: [
+          { label: 'Header & Bottom Navigation', highlight: true },
+          { label: 'Information Architecture', highlight: false },
+          { label: 'Prioritization Framework', highlight: true },
+          { label: 'GenAI Expectations Report', highlight: false },
+        ],
+        impact: [
+          'Reprioritized bottom navigation reflecting high-frequency financial actions with reduced redundancy.',
+          'Clear separation between investing and administrative features — reduced menu duplication.',
+          'Established an AI expectation framework distinguishing assistive vs. advisory AI capabilities.',
+          'Created a strategic foundation for unified AI support integrating GenAI, chatbot automation, and live agent escalation.',
+        ],
+      },
+      {
+        id: 2,
+        emoji: '🏛️',
+        visual: 'vis-2',
+        industry: 'Fintech',
+        filter: 'fintech',
+        title: 'UX Strategy & Public Site Redesign',
+        subtitle: 'Financial Institution (PNC)',
+        role: 'UX Researcher',
+        duration: '3 months',
+        context: 'A major financial institution sought to improve UX, performance, and lead generation for their website across B2B client segments — from small business to private banking.',
+        goal: 'Deliver a human-centric website redesign with new navigation, IA, content strategies, and segment-specific lead generation flows.',
+        methods: ['IDI + Concept Testing', 'Usability Testing (Round 1 & 2)', 'UX Diagnostics', 'Persona Development', 'Journey Mapping', 'Prototype Testing'],
+        collaboration: ['UX Researchers ×2', 'UX Designers ×3', 'Product Managers', 'Business Consultants', 'Client Team'],
+        deliverables: [
+          { label: 'New Navigation', highlight: true },
+          { label: 'Information Architecture', highlight: false },
+          { label: 'Content Strategies', highlight: true },
+          { label: 'Lead Generation Flow', highlight: false },
+          { label: 'Personas & Journeys', highlight: false },
+        ],
+        impact: [
+          'Business Banking: Product-first landing pages designed as direct sales channels with revenue-based routing.',
+          'Private Banking: Active outreach model where leads trigger proactive follow-up from advisors.',
+          'Content hierarchy aligned to client mental models — insights, testimonials deprioritized based on user feedback.',
+          'Cross-segment: matched messaging to what each segment truly valued (relationship vs. product).',
+        ],
+      },
+      {
+        id: 3,
+        emoji: '🌾',
+        visual: 'vis-3',
+        industry: 'AgTech',
+        filter: 'agtech',
+        title: 'Envisioning the Future of Tractors',
+        subtitle: 'Sustainable Farming',
+        role: 'Strategic Designer',
+        duration: '4+ months',
+        context: 'Farmers face rising challenges of labor shortages, regulatory pressures, and unpredictable extreme weather conditions. We envisioned a next-generation electric autonomous tractor with farmers using HCD methodologies.',
+        goal: 'Assess desirability, feasibility, viability, and sustainability of electric autonomous tractors; identify the next-gen product ecosystem.',
+        methods: ['In-depth Interviews', 'Survey (100+ touchpoints)', 'Digital Ethnography (Dscout)', 'Innovation Workshop', 'Concept Testing', 'Pricing Research'],
+        collaboration: ['Principal Strategic Designer', 'Experience Designers', 'Engineers', 'Business Consultants'],
+        deliverables: [
+          { label: 'Research Compendium', highlight: true },
+          { label: 'Stakeholder Map', highlight: false },
+          { label: 'Empathy & Journey Maps', highlight: false },
+          { label: 'Product Assessment Framework', highlight: true },
+          { label: 'Research Highlight Reels', highlight: false },
+        ],
+        impact: [
+          'Developed a framework assessing product features through desirability, feasibility, financial impact, and climate sustainability.',
+          'Socialized the framework for broader adoption across the organization on in-progress projects.',
+          'Organized a customer panel for long-term engagement.',
+          'Thought leadership article in progress based on findings.',
+        ],
+      },
+      {
+        id: 4,
+        emoji: '🗽',
+        visual: 'vis-4',
+        industry: 'Public Sector',
+        filter: 'public',
+        title: 'Inclusive Design for Financial Inclusion',
+        subtitle: 'Jobs NYC Redesign',
+        role: 'UX Researcher',
+        duration: 'Fellowship',
+        context: 'The City of New York planned to redesign the website helping New Yorkers find employment programs. The focus was on inclusive, accessible design for a diverse population.',
+        goal: 'Improve navigation, accessibility, and content clarity — testing color palettes, dark/light modes, and IA with a diverse user group.',
+        methods: ['Heuristic Analysis', 'Stakeholder Workshop', 'Usability Testing + Interviews (N=8)', 'Inclusive Research Design'],
+        collaboration: ['Product Manager', 'Designer', 'Engineers', 'Content Strategist', "Mayor's Office for People with Disabilities", "Mayor's Office of Talent & Workforce Development"],
+        deliverables: [
+          { label: 'Color Palette Design', highlight: true },
+          { label: '2 Themes (Light/Dark)', highlight: false },
+          { label: 'Clear Mobile Menu', highlight: true },
+          { label: 'Program Cards Redesigned', highlight: false },
+          { label: 'Inclusive Design Advocacy', highlight: false },
+        ],
+        impact: [
+          'Designed a new color palette with colorblind considerations and both light and dark themes.',
+          'Improved mobile navigation clarity and program card design.',
+          'Advocated for equity and inclusion — research shared at stakeholder events and end of fellowship.',
+          'Product launched at jobsnyc.gov with accessibility standards (WCAG 2.1 Level AA).',
+        ],
+      },
+      {
+        id: 5,
+        emoji: '💊',
+        visual: 'vis-5',
+        industry: 'Healthcare',
+        filter: 'healthcare',
+        title: 'Online Pharmacy Design',
+        subtitle: 'Seniors & Medicare Recipients',
+        role: 'Strategic Designer',
+        duration: 'Multi-round',
+        context: 'Helping an online pharmacy design their website and mobile app portal for Medicare recipients aged 65+, with diverse accessibility needs.',
+        goal: 'Provide actionable user feedback on usefulness and usability of the pharmacy app based on two lenses: are we surfacing the right items, and can users complete key tasks?',
+        methods: ['Usability Testing (N=9)', 'System Usability Scale (SUS)', 'Post-task Interviews', 'Inclusive Research Design'],
+        collaboration: ['Lead Strategic Designer', 'UX Designers', 'Consultants'],
+        deliverables: [
+          { label: 'Design Principles', highlight: true },
+          { label: 'Iterative Design Changes', highlight: false },
+          { label: 'Inclusive Research Tips', highlight: true },
+          { label: 'Thought Leadership Article', highlight: false },
+        ],
+        impact: [
+          'Final round SUS score reached above the 90th percentile.',
+          'Published "Unlocking equity for all: Prioritizing digital accessibility in government" (BCG).',
+          'Design principles: guiding language, resonating visuals, balance of information, delightful OTC shopping, savings motivators.',
+        ],
+      },
+      {
+        id: 6,
+        emoji: '🛒',
+        visual: 'vis-6',
+        industry: 'Retail & Commerce',
+        filter: 'retail',
+        title: 'Shoplazza POS Web Experience',
+        subtitle: 'Retail Point-of-Sale',
+        role: 'UX Researcher',
+        duration: '2 months',
+        context: 'Shoplazza was preparing to hand over their POS system to a pharmacy client in 2025. The product team needed to ensure smooth migration and integrate customer feedback across retail use cases.',
+        goal: 'Evaluate usability and usefulness of the POS for store managers and sales associates across 5 key tasks.',
+        methods: ['Store Visits ×3 (Contextual Inquiry)', 'NRF Show Testing', 'Literature Review', 'Usability Testing (N=7)', 'Product Benchmarking'],
+        collaboration: ['UX Manager', 'Product Managers', 'Sales & Solutions PM', 'Product Designer', 'Marketing & Branding'],
+        deliverables: [
+          { label: 'Research Report', highlight: true },
+          { label: '83 User Feedback Items', highlight: false },
+          { label: 'Product Benchmarks Sheet', highlight: true },
+          { label: 'Industry News Share-out', highlight: false },
+        ],
+        impact: [
+          'Research scaled to other product areas (store building platform, broader user base).',
+          'Upskilled the team with unmoderated usability testing training and platform selection.',
+          'Led UX Meetup sessions: "Customer Journey Mapping 101" and "Unmoderated User Testing."',
+          'Stores of varying scales showed different POS maturity — findings helped prioritize unified discount and inventory features.',
+        ],
+      },
+      {
+        id: 7,
+        emoji: '🍗',
+        visual: 'vis-7',
+        industry: 'Retail & Commerce',
+        filter: 'retail',
+        title: 'Chick-fil-A App Digital Diagnostic',
+        subtitle: 'Meal Ordering App',
+        role: 'Strategic Designer',
+        duration: '3 weeks',
+        context: 'Assessed Chick-fil-A app growth potential through the lens of app experience and voice of the customer, focusing on the full sales funnel from Awareness through Advocacy.',
+        goal: 'Identify opportunities and 13 prioritized recommendations to grow app engagement, personalization, and loyalty across the CFA customer funnel.',
+        methods: ['Customer Interviews ×7', 'Market Scan', 'App UX Assessment', 'Competitor Analysis', 'Financial Projections'],
+        collaboration: ['Experience Designer', 'Growth Architects'],
+        deliverables: [
+          { label: 'Market Scan', highlight: false },
+          { label: 'App UX Assessment', highlight: true },
+          { label: 'Competitor Analysis', highlight: false },
+          { label: 'Voice of Customers', highlight: true },
+          { label: 'Financial Projections', highlight: false },
+        ],
+        impact: [
+          'Identified 13 recommendations across 4 categories: Expand Digital Footprint, Entice With Value, Re-engage Users, Incentivize Loyalty.',
+          'Quick wins: App installer retargeting, 1PD audience expansion, email send time testing.',
+          'Proposed next steps for CFA with a customer journey deep-dive.',
+        ],
+      },
+      {
+        id: 8,
+        emoji: '💼',
+        visual: 'vis-8',
+        industry: 'EdTech',
+        filter: 'edtech',
+        title: 'HireBeat Landing Page Redesign',
+        subtitle: 'Job Seeker Platform',
+        role: 'UX Researcher',
+        duration: 'Sprint',
+        context: 'HireBeat, an AI-powered job interview practice and resume optimization tool, faced a high landing page bounce-rate and low conversion — unclear if the product was being communicated effectively.',
+        goal: 'Understand user perceptions, identify conversion barriers, and provide actionable redesign recommendations.',
+        methods: ['Competitor Analysis', 'Usability Testing + Interviews (N=8)', 'Card Sorting', 'Content Analysis'],
+        collaboration: ['Product Manager', 'Designers', 'Engineers', 'Content Strategist'],
+        deliverables: [
+          { label: 'Usability Report', highlight: true },
+          { label: 'Landing Page Redesign', highlight: false },
+          { label: 'IA Restructuring', highlight: true },
+          { label: 'Competitor Analysis', highlight: false },
+        ],
+        impact: [
+          'Redesigned landing page: more professional, more trustworthy, less visual noise.',
+          'Product features placed directly below main banner with clear explanations.',
+          'Improved accessibility: WCAG color contrast, removed flashing banner, better text hierarchy.',
+          'Scalability: findings also informed HireBeat\'s B2B website redesign.',
+        ],
+      },
+      {
+        id: 9,
+        emoji: '📚',
+        visual: 'vis-9',
+        industry: 'EdTech',
+        filter: 'edtech',
+        title: 'Lockcard Product Strategy',
+        subtitle: 'Language Learning App',
+        role: 'User Researcher',
+        duration: 'Multi-phase',
+        context: 'Lockcard is a learning app using timed notifications to help language learners remember new words. The team was exploring a monetization strategy targeting medical students.',
+        goal: 'Map Lockcard\'s position in students\' learning tool ecosystem and assess the viability of a paid medical vocabulary product.',
+        methods: ['In-depth User Interviews (N=6)', 'Diary Studies', 'Affinity Mapping', 'Journey Mapping'],
+        collaboration: ['Product Manager', 'Designers'],
+        deliverables: [
+          { label: 'User Journey Map', highlight: true },
+          { label: 'Product Strategy Recommendations', highlight: false },
+          { label: 'Design Principles', highlight: true },
+          { label: 'Next-version Feature Priorities', highlight: false },
+        ],
+        impact: [
+          'MD students identified as potential power users — warranting further exploration.',
+          'Recommended holding the medical vocab pricing plan until core product improved.',
+          'Key priority areas: search accuracy, notification quality/quantity, reliable progress tracking.',
+          'Insights directly inspired product features for the next version update.',
+        ],
+      },
+    ];
+
+    const methods = [
+      { icon: '🎤', name: 'In-depth Interviews', desc: 'Moderated 1:1 conversations to explore user needs, behaviors, and mental models.' },
+      { icon: '🖱️', name: 'Usability Testing', desc: 'Task-based testing (moderated & unmoderated) to evaluate product effectiveness.' },
+      { icon: '📋', name: 'Survey Research', desc: 'Quantitative insight at scale — ranking tasks, testing icons, and measuring desirability.' },
+      { icon: '🗂️', name: 'Card Sorting', desc: 'Understanding how users intuitively group and label information architecture.' },
+      { icon: '📊', name: 'Adobe Analytics', desc: 'Behavioral data analysis — task entry points, completion rates, and time-on-task.' },
+      { icon: '🔍', name: 'Heuristic Analysis', desc: 'Expert-led UX evaluation against established usability principles.' },
+      { icon: '📓', name: 'Diary Studies', desc: 'Longitudinal self-reporting to capture real-world usage behaviors over time.' },
+      { icon: '🏭', name: 'Contextual Inquiry', desc: 'In-person observation in natural environments — stores, farms, clinics.' },
+      { icon: '🧩', name: 'Innovation Workshop', desc: 'Co-creation sessions where users and teams envision future products together.' },
+      { icon: '🗺️', name: 'Journey Mapping', desc: 'Visualizing end-to-end user experiences to surface key moments and pain points.' },
+    ];
+
+    // ─── RENDER PROJECTS ────────────────────────────────────────
+    const grid = document.getElementById('projects-grid');
+    projects.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'project-card fade-up';
+      card.style.setProperty('--i', i);
+      card.dataset.filter = p.filter;
+      card.innerHTML = `
+        <div class="project-card-visual ${p.visual}"></div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="project-industry">${p.industry}</span>
+            <span class="project-duration">${p.duration}</span>
+          </div>
+          <h3 class="project-title">${p.title}</h3>
+          <p class="project-role">${p.role} — ${p.subtitle}</p>
+          <div class="project-methods">
+            ${p.methods.slice(0, 3).map(m => `<span class="method-tag">${m}</span>`).join('')}
+            ${p.methods.length > 3 ? `<span class="method-tag">+${p.methods.length - 3}</span>` : ''}
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', () => openModal(p));
+      grid.appendChild(card);
+    });
+
+    // ─── RENDER METHODS ─────────────────────────────────────────
+    const methodsGrid = document.getElementById('methods-grid');
+    methods.forEach((m, i) => {
+      const card = document.createElement('div');
+      card.className = 'method-card';
+      card.style.setProperty('--i', i);
+      card.innerHTML = `
+        <div class="method-icon">${m.icon}</div>
+        <div class="method-name">${m.name}</div>
+        <div class="method-desc">${m.desc}</div>
+      `;
+      methodsGrid.appendChild(card);
+    });
+
+    // ─── MODAL ──────────────────────────────────────────────────
+    const overlay = document.getElementById('modal-overlay');
+    const modalHeader = document.getElementById('modal-header');
+    const modalBody = document.getElementById('modal-body');
+
+    function openModal(p) {
+      modalHeader.className = 'modal-header ' + p.visual;
+      modalHeader.querySelector('.modal-close') || (modalHeader.innerHTML += '<button class="modal-close" id="modal-close" aria-label="Close">✕</button>');
+      const closeBtn = modalHeader.querySelector('.modal-close');
+      closeBtn.onclick = closeModal;
+
+      modalBody.innerHTML = `
+        <div class="modal-label">
+          <span class="modal-industry">${p.industry}</span>
+          <span class="modal-duration">${p.duration}</span>
+        </div>
+        <h2 class="modal-title">${p.title}</h2>
+        <div class="modal-role">${p.role} — ${p.subtitle}</div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Context</div>
+          <p>${p.context}</p>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Goal</div>
+          <p>${p.goal}</p>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Methods</div>
+          <div class="modal-methods">
+            ${p.methods.map(m => `<span class="modal-method">${m}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Collaboration</div>
+          <div class="modal-collab">
+            ${p.collaboration.map(c => `<span class="collab-chip">${c}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Deliverables</div>
+          <div class="modal-deliverables">
+            ${p.deliverables.map(d => `<div class="deliverable-chip ${d.highlight ? 'highlight' : ''}">${d.label}</div>`).join('')}
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Impact</div>
+          <div class="modal-impact">
+            ${p.impact.map(i => `<p>→ ${i}</p>`).join('')}
+          </div>
+        </div>
+      `;
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ─── FILTER ─────────────────────────────────────────────────
+    document.getElementById('filter-bar').addEventListener('click', (e) => {
+      if (!e.target.classList.contains('filter-btn')) return;
+      const filter = e.target.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      document.querySelectorAll('.project-card').forEach(card => {
+        const show = filter === 'all' || card.dataset.filter === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+
+    // ─── NAV SCROLL ─────────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // ─── INTERSECTION OBSERVER ──────────────────────────────────
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // ─── SERVICE WORKER (inlined as Blob for portability) ───────
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swCode = `
+const CACHE = 'suchen-portfolio-v1';
+const ASSETS = ['/'];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  self.skipWaiting();
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys =>
+    Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+  ));
+  self.clients.claim();
+});
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      if (cached) return cached;
+      return fetch(e.request).then(res => {
+        if (res && res.status === 200) {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      }).catch(() => cached || caches.match('/'));
+    })
+  );
+});
+        `;
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        const swUrl = URL.createObjectURL(blob);
+        navigator.serviceWorker.register(swUrl, { scope: '/' })
+          .then(() => console.log('[SW] Registered via Blob'))
+          .catch(() => {
+            // Blob SW not allowed in some contexts (cross-origin preview) — silent fail, offline still works on deploy
+          });
+      });
+    }
+
+    // ─── PWA INSTALL ────────────────────────────────────────────
+    let deferredPrompt;
+    const installBanner = document.getElementById('install-banner');
+    const installBtn = document.getElementById('install-btn');
+    const installDismiss = document.getElementById('install-dismiss');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.classList.add('show');
+    });
+
+    installBtn.addEventListener('click', async () => {
+      installBanner.classList.remove('show');
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
