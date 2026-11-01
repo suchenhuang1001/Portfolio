@@ -866,6 +866,7 @@
     .vis-7 { background-image: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=800&q=80'); }
     .vis-8 { background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'); }
     .vis-9 { background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80'); }
+    .vis-10 { background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80'); }
   </style>
 </head>
 <body>
@@ -1007,6 +1008,31 @@
   <script>
     // ─── PROJECT DATA ───────────────────────────────────────────
     const projects = [
+      {
+        visual: 'vis-10',
+        industry: 'Fintech',
+        filter: 'fintech',
+        title: 'BMO InvestorLine Client Journey Mapping',
+        subtitle: 'End-to-End Journey Research',
+        role: 'Senior UX Researcher',
+        duration: '3 months',
+        context: 'BMO InvestorLine lacked a holistic, end-to-end view of the client journey, a critical gap as the team entered F27 planning amid intensifying fintech competition. External signals, including a JD Power study, revealed measurable declines across key satisfaction metrics, but the why behind those numbers remained unclear.',
+        goal: 'Surface where clients thrive, the pain points, and client churn drivers that quantitative data alone could not explain, giving stakeholders an empathy-grounded foundation to inform strategic decisions.',
+        methods: ['Moderated In-depth Interviews (N=14 clients, 2 advisors)', 'Journey Co-creation', 'JD Power Study Analysis', 'Adobe Analytics', 'PowerBI Dashboard'],
+        collaboration: ['Product Owners', 'Designers', 'Content Managers', 'CX Intern', 'Research Manager', 'CX Manager', 'Strategy Partners'],
+        deliverables: [
+          { label: 'Journey Maps', highlight: true },
+          { label: 'Journey Highlights Research Reports', highlight: false },
+          { label: 'Opportunity Area Prioritization', highlight: true },
+          { label: 'UX Metrics and Tracking', highlight: false },
+        ],
+        impact: [
+          'First-ever end-to-end journey map for the InvestorLine product line, with 100+ attendees across business, product, and design at the readout sessions.',
+          '5 follow-up alignment sessions that directly shaped F27 roadmap priorities and resource allocation.',
+          'Provided supporting evidence for a subsequent AI study, extending research influence into an emerging strategic initiative.',
+          'Delivered a CX toolkit and frameworks that became the foundational reference for the team and the newly created journey hire role. Journey mapping is now part of the strategic planning process.',
+        ],
+      },
       {
         id: 1,
         emoji: '🏦',
@@ -1415,7 +1441,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         const swCode = `
-const CACHE = 'suchen-portfolio-v1';
+const CACHE = 'suchen-portfolio-v2';
 const ASSETS = ['/'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -1430,16 +1456,13 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(res => {
-        if (res && res.status === 200) {
-          const clone = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
-        }
-        return res;
-      }).catch(() => cached || caches.match('/'));
-    })
+    fetch(e.request).then(res => {
+      if (res && res.status === 200) {
+        const clone = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+      }
+      return res;
+    }).catch(() => caches.match(e.request).then(c => c || caches.match('/')))
   );
 });
         `;
